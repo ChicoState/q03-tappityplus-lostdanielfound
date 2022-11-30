@@ -1,4 +1,5 @@
 #include "tappity.h"
+#include <cmath>
 /**
  * Class for tappity
 **/
@@ -6,12 +7,14 @@
 //Constructor sets the reference phrase
 tappity::tappity(std::string reference)
 {
+  ref_string = reference;
 }
 
 //Provide the input to be compared to the reference. Before this 
 //function is called, the input should be considered an empty string
 void tappity::entry(std::string input)
 {
+  input_string = input;
 }
 
 //Compares the length of the reference to that of the input and
@@ -19,9 +22,11 @@ void tappity::entry(std::string input)
 //same length
 int tappity::length_difference()
 {
-  return 0;
-}
+  int diff = abs(ref_string.length() - input_string.length());
+  if (diff == 0) {return 0;}
 
+  return diff;
+}
 //Compares the content of the reference to that of the input and
 //calculates the accuracy of matching characters. If the two strings
 //are identical, accuracy should be 100. However, for each 
