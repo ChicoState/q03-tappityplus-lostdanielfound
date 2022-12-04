@@ -1,4 +1,5 @@
 #include "tappity.h"
+#include <string>
 #include <cmath>
 /**
  * Class for tappity
@@ -41,5 +42,37 @@ int tappity::length_difference()
 //locations in another string that has 16 characters, the accuracy is 50.
 double tappity::accuracy()
 {
-  return 0;
+
+  if (ref_string != input_string) {
+    int num_of_correct = 0;
+
+    if (ref_string.length() >= input_string.length()) {
+      for (int i = 0; i < input_string.length(); i++)
+      {
+        /* Loop through each character within input_string and 
+        count how many are correct and divide that amount by the 
+        ref_string.length() to get the true accuracy */
+
+        if (input_string[i] == ref_string[i])
+        {
+          num_of_correct++;
+        } 
+      }
+      
+      return double(num_of_correct / ref_string.length());
+
+    } else if (ref_string.length() < input_string.length()) {
+      for (int i = 0; i < ref_string.length(); i++)
+      {
+        if (input_string[i] == ref_string[i])
+        {
+          num_of_correct++;
+        }
+      }
+
+      return double(num_of_correct / ref_string.length()); 
+    }
+  }
+
+  return double(100); // If both strings are literally equal
 }
